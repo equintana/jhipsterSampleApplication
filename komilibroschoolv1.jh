@@ -1,0 +1,156 @@
+
+entity School {
+
+    name String required,
+
+    active Boolean,
+
+    image ImageBlob maxbytes(4000000)
+
+}
+
+relationship OneToOne{
+
+    School{user(email)} to User{school(name)}
+
+}
+
+entity Teacher{
+
+    name String required,
+
+    image ImageBlob maxbytes(4000000)
+
+}
+
+relationship OneToOne{
+
+    Teacher{user(email)} to User{teacher(name)}
+
+}
+
+relationship OneToMany{
+
+    School{teacher(name)} to Teacher{school(name)}
+
+}
+
+entity Classroom{
+
+    name String required
+
+}
+
+relationship OneToMany{
+
+    Teacher{classroom(name)} to Classroom{teacher(name)}
+
+}
+
+entity Review{
+
+    text String required,
+
+    approved Boolean,
+
+    teacherComment String
+
+}
+
+entity Student{
+
+    name String required,
+
+    image ImageBlob maxbytes(4000000)
+
+}
+
+relationship OneToOne{
+
+    Student{user(email)} to User{student(name)}
+
+}
+
+relationship OneToMany{
+
+    Student{student(name)} to Student{student(name)}
+
+}
+
+relationship OneToMany{
+
+    Student{review(id)} to Review{student(name)}
+
+}
+
+relationship ManyToMany{
+
+    Student{classroom(name)} to Classroom{student(name)}
+
+}
+
+entity Category{
+
+    name String required
+
+}
+
+entity Filter{
+
+    name String required
+
+}
+
+entity Book{
+
+    title String required,
+
+    image String required,
+
+    customImage ImageBlob maxbytes(4000000)
+
+}
+
+relationship OneToMany{
+
+    Category{book(title)} to Book{category(name)}
+
+}
+
+relationship ManyToMany{
+
+    Filter{book(title)} to Book{filter(name)}
+
+}
+
+relationship OneToMany{
+
+    Book{review(id)} to Review{book(title)}
+
+}
+
+entity TimelineEvent{
+
+    visible Boolean
+
+}
+
+relationship OneToMany{
+
+    TimelineEvent{review(id)} to Review{timelineEvent(id)}
+
+}
+
+relationship OneToOne{
+
+    TimelineEvent{classroom(name)} to Classroom{timelineEvent(id)}
+
+}
+
+
+// Set pagination options
+
+paginate * with pagination
+
+
+dto * with mapstruct
