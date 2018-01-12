@@ -1,0 +1,51 @@
+
+<div *ngIf="student">
+    <h2><span jhiTranslate="jhipsterSampleApplicationApp.student.detail.title">Student</span> {{student.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.student.name">Name</span></dt>
+        <dd>
+            <span>{{student.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.student.image">Image</span></dt>
+        <dd>
+            <div *ngIf="student.image">
+                <a (click)="openFile(student.imageContentType, student.image)">
+                    <img [src]="'data:' + student.imageContentType + ';base64,' + student.image" style="max-width: 100%;" alt="student image"/>
+                </a>
+                {{student.imageContentType}}, {{byteSize(student.image)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.student.user">User</span></dt>
+        <dd>
+            {{student.userEmail}}
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.student.classroom">Classroom</span></dt>
+        <dd>
+            <span *ngFor="let classroom of student.classrooms; let last = last">
+                <a [routerLink]="['/classroom', classroom?.id ]">{{classroom.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.student.student">Student</span></dt>
+        <dd>
+            <div *ngIf="student.studentId">
+                <a [routerLink]="['/student', student.studentId]">{{student.studentName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'student/'+ student.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

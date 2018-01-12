@@ -1,0 +1,73 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTeacherLabel" jhiTranslate="jhipsterSampleApplicationApp.teacher.home.createOrEditLabel">Create or edit a Teacher</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!teacher.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="teacher.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.teacher.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="teacher.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.teacher.image" for="field_image">Image</label>
+            <div>
+                <img [src]="'data:' + teacher.imageContentType + ';base64,' + teacher.image" style="max-height: 100px;" *ngIf="teacher.image" alt="teacher image"/>
+                <div *ngIf="teacher.image" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{teacher.imageContentType}}, {{byteSize(teacher.image)}}</span>
+                    <button type="button" (click)="clearInputImage('image', 'imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_image" (change)="setFileData($event, teacher, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="image" id="field_image"
+                [(ngModel)]="teacher.image" maxbytes="4000000"/>
+            <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                [(ngModel)]="teacher.imageContentType" />
+            <div [hidden]="!(editForm.controls.image?.dirty && editForm.controls.image?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.image?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" translateValues="{ max: 4000000 }">
+                    This field cannot be more than 4000000.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.teacher.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="teacher.userId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.email}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.teacher.school" for="field_school">School</label>
+            <select class="form-control" id="field_school" name="school" [(ngModel)]="teacher.schoolId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="schoolOption.id" *ngFor="let schoolOption of schools; trackBy: trackSchoolById">{{schoolOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

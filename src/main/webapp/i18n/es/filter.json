@@ -1,0 +1,23 @@
+{
+    "jhipsterSampleApplicationApp": {
+        "filter" : {
+            "home": {
+                "title": "Filters",
+                "createLabel": "Crear nuevo Filter",
+                "createOrEditLabel": "Crear o editar Filter",
+                "search": "Search for Filter"
+            },
+            "created": "Un nuevo Filter ha sido creado con el identificador {{ param }}",
+            "updated": "Un Filter ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Filter ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Filter {{ id }}?"
+            },
+            "detail": {
+                "title": "Filter"
+            },
+            "name": "Name",
+            "book": "Book"
+        }
+    }
+}

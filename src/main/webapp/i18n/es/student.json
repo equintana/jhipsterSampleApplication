@@ -1,0 +1,28 @@
+{
+    "jhipsterSampleApplicationApp": {
+        "student" : {
+            "home": {
+                "title": "Students",
+                "createLabel": "Crear nuevo Student",
+                "createOrEditLabel": "Crear o editar Student",
+                "search": "Search for Student"
+            },
+            "created": "Un nuevo Student ha sido creado con el identificador {{ param }}",
+            "updated": "Un Student ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Student ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Student {{ id }}?"
+            },
+            "detail": {
+                "title": "Student"
+            },
+            "name": "Name",
+            "image": "Image",
+            "user": "User",
+            "student": "Student",
+            "review": "Review",
+            "classroom": "Classroom",
+            "student": "Student"
+        }
+    }
+}

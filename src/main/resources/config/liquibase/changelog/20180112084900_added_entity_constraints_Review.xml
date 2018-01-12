@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Review.
+    -->
+    <changeSet id="20180112084900-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="student_id"
+                                 baseTableName="review"
+                                 constraintName="fk_review_student_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="student"/>
+
+        <addForeignKeyConstraint baseColumnNames="book_id"
+                                 baseTableName="review"
+                                 constraintName="fk_review_book_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="book"/>
+
+        <addForeignKeyConstraint baseColumnNames="timeline_event_id"
+                                 baseTableName="review"
+                                 constraintName="fk_review_timeline_event_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="timeline_event"/>
+
+    </changeSet>
+</databaseChangeLog>

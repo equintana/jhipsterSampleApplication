@@ -1,0 +1,101 @@
+<div>
+    <h2>
+        <span jhiTranslate="jhipsterSampleApplicationApp.review.home.title">Reviews</span>
+        <button class="btn btn-primary float-right jh-create-entity create-review" [routerLink]="['/', { outlets: { popup: ['review-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="jhipsterSampleApplicationApp.review.home.createLabel">
+            Create new Review
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'jhipsterSampleApplicationApp.review.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="reviews">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="text"><span jhiTranslate="jhipsterSampleApplicationApp.review.text">Text</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="approved"><span jhiTranslate="jhipsterSampleApplicationApp.review.approved">Approved</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="teacherComment"><span jhiTranslate="jhipsterSampleApplicationApp.review.teacherComment">Teacher Comment</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="studentName"><span jhiTranslate="jhipsterSampleApplicationApp.review.student">Student</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="bookTitle"><span jhiTranslate="jhipsterSampleApplicationApp.review.book">Book</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timelineEventId"><span jhiTranslate="jhipsterSampleApplicationApp.review.timelineEvent">Timeline Event</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let review of reviews ;trackBy: trackId">
+                <td><a [routerLink]="['../review', review.id ]">{{review.id}}</a></td>
+                <td>{{review.text}}</td>
+                <td>{{review.approved}}</td>
+                <td>{{review.teacherComment}}</td>
+                <td>
+                    <div *ngIf="review.studentId">
+                        <a [routerLink]="['../student', review.studentId  ]" >{{review.studentName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="review.bookId">
+                        <a [routerLink]="['../book', review.bookId  ]" >{{review.bookTitle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="review.timelineEventId">
+                        <a [routerLink]="['../timeline-event', review.timelineEventId  ]" >{{review.timelineEventId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../review', review.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'review/'+ review.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'review/'+ review.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="reviews && reviews.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

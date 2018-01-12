@@ -1,0 +1,32 @@
+
+<div *ngIf="timelineEvent">
+    <h2><span jhiTranslate="jhipsterSampleApplicationApp.timelineEvent.detail.title">Timeline Event</span> {{timelineEvent.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.timelineEvent.visible">Visible</span></dt>
+        <dd>
+            <span>{{timelineEvent.visible}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.timelineEvent.classroom">Classroom</span></dt>
+        <dd>
+            <div *ngIf="timelineEvent.classroomId">
+                <a [routerLink]="['/classroom', timelineEvent.classroomId]">{{timelineEvent.classroomName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'timeline-event/'+ timelineEvent.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

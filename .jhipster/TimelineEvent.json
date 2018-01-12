@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "classroom",
+            "otherEntityName": "classroom",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "timelineEvent(id)"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "review",
+            "otherEntityName": "review",
+            "otherEntityRelationshipName": "timelineEvent"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "visible",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180112084905",
+    "entityTableName": "timeline_event",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

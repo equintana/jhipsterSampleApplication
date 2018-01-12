@@ -1,0 +1,52 @@
+
+<div *ngIf="review">
+    <h2><span jhiTranslate="jhipsterSampleApplicationApp.review.detail.title">Review</span> {{review.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.review.text">Text</span></dt>
+        <dd>
+            <span>{{review.text}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.review.approved">Approved</span></dt>
+        <dd>
+            <span>{{review.approved}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.review.teacherComment">Teacher Comment</span></dt>
+        <dd>
+            <span>{{review.teacherComment}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.review.student">Student</span></dt>
+        <dd>
+            <div *ngIf="review.studentId">
+                <a [routerLink]="['/student', review.studentId]">{{review.studentName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.review.book">Book</span></dt>
+        <dd>
+            <div *ngIf="review.bookId">
+                <a [routerLink]="['/book', review.bookId]">{{review.bookTitle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.review.timelineEvent">Timeline Event</span></dt>
+        <dd>
+            <div *ngIf="review.timelineEventId">
+                <a [routerLink]="['/timeline-event', review.timelineEventId]">{{review.timelineEventId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'review/'+ review.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

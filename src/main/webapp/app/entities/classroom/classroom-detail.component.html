@@ -1,0 +1,32 @@
+
+<div *ngIf="classroom">
+    <h2><span jhiTranslate="jhipsterSampleApplicationApp.classroom.detail.title">Classroom</span> {{classroom.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.classroom.name">Name</span></dt>
+        <dd>
+            <span>{{classroom.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.classroom.teacher">Teacher</span></dt>
+        <dd>
+            <div *ngIf="classroom.teacherId">
+                <a [routerLink]="['/teacher', classroom.teacherId]">{{classroom.teacherName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'classroom/'+ classroom.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

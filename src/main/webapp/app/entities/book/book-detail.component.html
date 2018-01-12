@@ -1,0 +1,45 @@
+
+<div *ngIf="book">
+    <h2><span jhiTranslate="jhipsterSampleApplicationApp.book.detail.title">Book</span> {{book.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.book.title">Title</span></dt>
+        <dd>
+            <span>{{book.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.book.image">Image</span></dt>
+        <dd>
+            <span>{{book.image}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.book.customImage">Custom Image</span></dt>
+        <dd>
+            <div *ngIf="book.customImage">
+                <a (click)="openFile(book.customImageContentType, book.customImage)">
+                    <img [src]="'data:' + book.customImageContentType + ';base64,' + book.customImage" style="max-width: 100%;" alt="book image"/>
+                </a>
+                {{book.customImageContentType}}, {{byteSize(book.customImage)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.book.category">Category</span></dt>
+        <dd>
+            <div *ngIf="book.categoryId">
+                <a [routerLink]="['/category', book.categoryId]">{{book.categoryName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'book/'+ book.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -42,6 +42,26 @@ public class CacheConfiguration {
             cm.createCache(es.keensoft.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(es.keensoft.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(es.keensoft.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.School.class.getName(), jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.School.class.getName() + ".teachers", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Teacher.class.getName(), jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Teacher.class.getName() + ".classrooms", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Classroom.class.getName(), jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Classroom.class.getName() + ".students", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Review.class.getName(), jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Student.class.getName(), jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Student.class.getName() + ".students", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Student.class.getName() + ".reviews", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Student.class.getName() + ".classrooms", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Category.class.getName(), jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Category.class.getName() + ".books", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Filter.class.getName(), jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Filter.class.getName() + ".books", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Book.class.getName(), jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Book.class.getName() + ".reviews", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.Book.class.getName() + ".filters", jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.TimelineEvent.class.getName(), jcacheConfiguration);
+            cm.createCache(es.keensoft.domain.TimelineEvent.class.getName() + ".reviews", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

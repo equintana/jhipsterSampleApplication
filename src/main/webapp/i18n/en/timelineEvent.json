@@ -1,0 +1,24 @@
+{
+    "jhipsterSampleApplicationApp": {
+        "timelineEvent" : {
+            "home": {
+                "title": "Timeline Events",
+                "createLabel": "Create a new Timeline Event",
+                "createOrEditLabel": "Create or edit a Timeline Event",
+                "search": "Search for Timeline Event"
+            },
+            "created": "A new Timeline Event is created with identifier {{ param }}",
+            "updated": "A Timeline Event is updated with identifier {{ param }}",
+            "deleted": "A Timeline Event is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Timeline Event {{ id }}?"
+            },
+            "detail": {
+                "title": "Timeline Event"
+            },
+            "visible": "Visible",
+            "classroom": "Classroom",
+            "review": "Review"
+        }
+    }
+}

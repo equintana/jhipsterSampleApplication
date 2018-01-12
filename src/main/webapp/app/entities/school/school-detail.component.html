@@ -1,0 +1,43 @@
+
+<div *ngIf="school">
+    <h2><span jhiTranslate="jhipsterSampleApplicationApp.school.detail.title">School</span> {{school.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.school.name">Name</span></dt>
+        <dd>
+            <span>{{school.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.school.active">Active</span></dt>
+        <dd>
+            <span>{{school.active}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.school.image">Image</span></dt>
+        <dd>
+            <div *ngIf="school.image">
+                <a (click)="openFile(school.imageContentType, school.image)">
+                    <img [src]="'data:' + school.imageContentType + ';base64,' + school.image" style="max-width: 100%;" alt="school image"/>
+                </a>
+                {{school.imageContentType}}, {{byteSize(school.image)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.school.user">User</span></dt>
+        <dd>
+            {{school.userEmail}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'school/'+ school.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
