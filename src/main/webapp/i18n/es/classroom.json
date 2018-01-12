@@ -1,0 +1,25 @@
+{
+    "jhipsterSampleApplicationApp": {
+        "classroom" : {
+            "home": {
+                "title": "Classrooms",
+                "createLabel": "Crear nuevo Classroom",
+                "createOrEditLabel": "Crear o editar Classroom",
+                "search": "Search for Classroom"
+            },
+            "created": "Un nuevo Classroom ha sido creado con el identificador {{ param }}",
+            "updated": "Un Classroom ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Classroom ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Classroom {{ id }}?"
+            },
+            "detail": {
+                "title": "Classroom"
+            },
+            "name": "Name",
+            "timelineEvent": "Timeline Event",
+            "teacher": "Teacher",
+            "student": "Student"
+        }
+    }
+}

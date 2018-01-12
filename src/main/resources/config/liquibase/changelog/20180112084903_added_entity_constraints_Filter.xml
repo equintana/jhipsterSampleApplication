@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Filter.
+    -->
+    <changeSet id="20180112084903-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="filters_id"
+                                 baseTableName="filter_book"
+                                 constraintName="fk_filter_book_filters_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="filter"/>
+        <addForeignKeyConstraint baseColumnNames="books_id"
+                                 baseTableName="filter_book"
+                                 constraintName="fk_filter_book_books_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="book"/>
+        
+    </changeSet>
+</databaseChangeLog>
